@@ -1,22 +1,23 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Collections.ObjectModel;
 
 namespace Performance.B12Serialization;
 
 public class SerializationBenchmark
 {
     [Benchmark]
-    public byte[] SerializeDirectlyToUtf8() =>
+    public ReadOnlyMemory<byte> SerializeDirectlyToUtf8() =>
         Service.SerializeDirectlyToUtf8();
     
     [Benchmark]
-    public byte[] SerializeToStringToUtf8() =>
+    public ReadOnlyMemory<byte> SerializeToStringToUtf8() =>
         Service.SerializeToStringToUtf8();
     
     [Benchmark]
-    public IReadOnlyCollection<Dto> DeserializeDirectlyFromUtf8() =>
+    public ReadOnlyCollection<Dto> DeserializeDirectlyFromUtf8() =>
         Service.DeserializeDirectlyFromUtf8();
     
     [Benchmark]
-    public IReadOnlyCollection<Dto> DeserializeFromUtf8FromString() =>
+    public ReadOnlyCollection<Dto> DeserializeFromUtf8FromString() =>
         Service.DeserializeFromUtf8FromString();
 }

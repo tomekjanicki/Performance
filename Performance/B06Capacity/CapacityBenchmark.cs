@@ -1,14 +1,15 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Collections.ObjectModel;
 
 namespace Performance.B06Capacity;
 
 public class CapacityBenchmark
 {
     [Benchmark]
-    public IReadOnlyCollection<string> ProcessWithCapacity() =>
+    public ReadOnlyCollection<string> ProcessWithCapacity() =>
         Processor.ProcessWithCapacity(Processor.Items);
     
     [Benchmark]
-    public IReadOnlyCollection<string> ProcessWithoutCapacity() =>
+    public ReadOnlyCollection<string> ProcessWithoutCapacity() =>
         Processor.ProcessWithoutCapacity(Processor.Items);
 }

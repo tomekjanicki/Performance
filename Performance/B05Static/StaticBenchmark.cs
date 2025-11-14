@@ -1,14 +1,15 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Collections.ObjectModel;
 
 namespace Performance.B05Static;
 
 public class StaticBenchmark
 {
     [Benchmark]
-    public IReadOnlyCollection<int> GetValidValuesNotStatic() => 
+    public ReadOnlyCollection<int> GetValidValuesNotStatic() => 
         Processor.GetValidValuesNotStatic();
     
     [Benchmark]
-    public IReadOnlyCollection<int> GetValidValuesStatic() => 
+    public ReadOnlyCollection<int> GetValidValuesStatic() => 
         Processor.GetValidValuesStatic();
 }

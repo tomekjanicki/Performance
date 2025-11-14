@@ -1,12 +1,14 @@
-﻿namespace Performance.B05Static;
+﻿using System.Collections.ObjectModel;
+
+namespace Performance.B05Static;
 
 public static class Processor
 {
     private static readonly int[] Values = [.. Enumerable.Range(1, 100)];
 
-    public static IReadOnlyCollection<int> GetValidValuesNotStatic() =>
+    public static ReadOnlyCollection<int> GetValidValuesNotStatic() =>
         [.. Values.Where(Validator.IsValidNotStatic)];
     
-    public static IReadOnlyCollection<int> GetValidValuesStatic() =>
+    public static ReadOnlyCollection<int> GetValidValuesStatic() =>
         [.. Values.Where(Validator.IsValidStatic)];
 }

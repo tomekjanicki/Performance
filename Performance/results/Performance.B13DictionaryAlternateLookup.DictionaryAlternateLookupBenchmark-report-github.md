@@ -1,15 +1,14 @@
 ```
 
-BenchmarkDotNet v0.15.6, Windows 11 (10.0.26100.6899/24H2/2024Update/HudsonValley)
+BenchmarkDotNet v0.15.6, Windows 11 (10.0.26200.6899)
 AMD Ryzen 5 Pro 7535U with Radeon Graphics 2.90GHz, 1 CPU, 12 logical and 6 physical cores
-.NET SDK 10.0.100-rc.2.25502.107
-  [Host]    : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-  .NET 10.0 : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+.NET SDK 10.0.100
+  [Host]     : .NET 10.0.0 (10.0.0, 10.0.25.52411), X64 RyuJIT x86-64-v3
+  DefaultJob : .NET 10.0.0 (10.0.0, 10.0.25.52411), X64 RyuJIT x86-64-v3
 
-Job=.NET 10.0  Runtime=.NET 10.0  Toolchain=net10.0  
 
 ```
-| Method      | Mean     | Error    | StdDev   | Gen0      | Gen1     | Gen2     | Allocated |
-|------------ |---------:|---------:|---------:|----------:|---------:|---------:|----------:|
-| CountWords1 | 59.04 ms | 1.157 ms | 2.284 ms | 2666.6667 | 888.8889 | 333.3333 |  20.67 MB |
-| CountWords2 | 49.92 ms | 0.947 ms | 1.052 ms |   90.9091 |        - |        - |   2.54 MB |
+| Method      | Mean     | Error    | StdDev   | Gen0      | Gen1      | Gen2     | Allocated |
+|------------ |---------:|---------:|---------:|----------:|----------:|---------:|----------:|
+| CountWords1 | 59.38 ms | 0.826 ms | 0.732 ms | 2750.0000 | 1000.0000 | 375.0000 |  20.67 MB |
+| CountWords2 | 54.61 ms | 1.090 ms | 1.631 ms |  100.0000 |         - |        - |   2.54 MB |

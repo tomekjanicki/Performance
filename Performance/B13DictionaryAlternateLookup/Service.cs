@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace Performance.B13DictionaryAlternateLookup;
 
@@ -9,7 +10,7 @@ public static partial class Service
     [GeneratedRegex(@"\b\w+\b")]
     private static partial Regex WordParser();
     
-    public static IReadOnlyDictionary<string, int> CountWords1()
+    public static ReadOnlyDictionary<string, int> CountWords1()
     {
         ReadOnlySpan<char> input = Input;
         Dictionary<string, int> result = new(StringComparer.OrdinalIgnoreCase);
@@ -20,10 +21,10 @@ public static partial class Service
             result[key] = result.TryGetValue(key, out var count) ? count + 1 : 1;
         }
 
-        return result;
+        return result.AsReadOnly();
     }
 
-    public static IReadOnlyDictionary<string, int> CountWords2()
+    public static ReadOnlyDictionary<string, int> CountWords2()
     {
         ReadOnlySpan<char> input = Input;
         Dictionary<string, int> result = new(StringComparer.OrdinalIgnoreCase);
@@ -34,6 +35,6 @@ public static partial class Service
             alternate[word] = alternate.TryGetValue(word, out var count) ? count + 1 : 1;
         }
 
-        return result;
+        return result.AsReadOnly();
     }
 }

@@ -1,15 +1,14 @@
 ```
 
-BenchmarkDotNet v0.15.6, Windows 11 (10.0.26100.6899/24H2/2024Update/HudsonValley)
+BenchmarkDotNet v0.15.6, Windows 11 (10.0.26200.6899)
 AMD Ryzen 5 Pro 7535U with Radeon Graphics 2.90GHz, 1 CPU, 12 logical and 6 physical cores
-.NET SDK 10.0.100-rc.2.25502.107
-  [Host]    : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-  .NET 10.0 : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+.NET SDK 10.0.100
+  [Host]     : .NET 10.0.0 (10.0.0, 10.0.25.52411), X64 RyuJIT x86-64-v3
+  DefaultJob : .NET 10.0.0 (10.0.0, 10.0.25.52411), X64 RyuJIT x86-64-v3
 
-Job=.NET 10.0  Runtime=.NET 10.0  Toolchain=net10.0  
 
 ```
 | Method                  | Mean        | Error      | StdDev     | Median      | Gen0   | Allocated |
 |------------------------ |------------:|-----------:|-----------:|------------:|-------:|----------:|
-| CreateUserWithException | 1,848.69 ns | 121.253 ns | 351.777 ns | 1,651.48 ns | 0.0763 |     648 B |
-| CreateUserWithResult    |    48.07 ns |   0.959 ns |   0.801 ns |    48.03 ns | 0.0343 |     288 B |
+| CreateUserWithException | 2,013.53 ns | 105.823 ns | 308.689 ns | 1,849.78 ns | 0.0763 |     648 B |
+| CreateUserWithResult    |    51.55 ns |   3.050 ns |   8.896 ns |    48.04 ns | 0.0344 |     288 B |

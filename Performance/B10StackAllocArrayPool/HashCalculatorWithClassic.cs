@@ -19,22 +19,22 @@ public static class HashCalculatorWithClassic
     
     private const int GuidFieldSize = 17;
     
-    private static string GetSha256AsBase64EncodedString(byte[] array) => 
-        Convert.ToBase64String(SHA256.HashData(array));
+    private static string GetSha256AsBase64EncodedString(ReadOnlyMemory<byte> array) => 
+        Convert.ToBase64String(SHA256.HashData(array.Span));
 
-    private static void Write(Guid? value, byte[] array, ref int counter)
+    private static void Write(Guid? value, Memory<byte> array, ref int counter)
     {
-        array[counter] = value is not null ? (byte)1 : (byte)0;
+        array.Span[counter] = value is not null ? (byte)1 : (byte)0;
         var val = value ?? Guid.Empty;
-        if (!val.TryWriteBytes(array.AsSpan().Slice(counter + 1, 16)))
+        if (!val.TryWriteBytes(array.Span.Slice(counter + 1, 16)))
         {
             RaiseSpanCopyFailureException();
         }
         counter += GuidFieldSize;
     }
 
-    private static void Write(string value, byte[] array, ref int counter) => 
-        counter += Encoding.UTF8.GetBytes(value.AsSpan(), array.AsSpan()[counter..]);
+    private static void Write(string value, Memory<byte> array, ref int counter) => 
+        counter += Encoding.UTF8.GetBytes(value.AsSpan(), array.Span[counter..]);
 
     private static int GetByteCount(string value) => 
         Encoding.UTF8.GetByteCount(value);

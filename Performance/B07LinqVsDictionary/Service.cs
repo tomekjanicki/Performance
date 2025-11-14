@@ -1,24 +1,26 @@
-﻿namespace Performance.B07LinqVsDictionary;
+﻿using System.Collections.Frozen;
+using System.Collections.ObjectModel;
 
-#pragma warning disable CA1859
+namespace Performance.B07LinqVsDictionary;
+
 public static class Service
 {
-    public static IReadOnlyCollection<User> GetUsersByIdsLinq(IReadOnlySet<Guid> userIds) =>
+    public static ReadOnlyCollection<User> GetUsersByIdsLinq(ReadOnlySet<Guid> userIds) =>
         [.. Repository.Users.Where(user => userIds.Contains(user.Id))];
 
-    public static IReadOnlyCollection<User> GetUsersByIdsAlreadyBuiltDictionary(IReadOnlySet<Guid> userIds) =>
+    public static ReadOnlyCollection<User> GetUsersByIdsAlreadyBuiltDictionary(ReadOnlySet<Guid> userIds) =>
         GetUsersByIds(userIds, Repository.UsersDictionary);
 
-    public static IReadOnlyCollection<User> GetUsersByIdsAlreadyBuiltFrozenDictionary(IReadOnlySet<Guid> userIds) =>
+    public static ReadOnlyCollection<User> GetUsersByIdsAlreadyBuiltFrozenDictionary(ReadOnlySet<Guid> userIds) =>
         GetUsersByIds(userIds, Repository.UsersFrozenDictionary);
 
-    public static IReadOnlyCollection<User> GetUsersByIdsBuildDictionary(IReadOnlySet<Guid> userIds) => 
+    public static ReadOnlyCollection<User> GetUsersByIdsBuildDictionary(ReadOnlySet<Guid> userIds) => 
         GetUsersByIds(userIds, Repository.GetUsers());
     
-    public static IReadOnlyCollection<User> GetUsersByIdsBuildFrozenDictionary(IReadOnlySet<Guid> userIds) => 
+    public static ReadOnlyCollection<User> GetUsersByIdsBuildFrozenDictionary(ReadOnlySet<Guid> userIds) => 
         GetUsersByIds(userIds, Repository.GetUsersAsFrozenDictionary());
     
-    private static IReadOnlyCollection<User> GetUsersByIds(IReadOnlySet<Guid> userIds, IReadOnlyDictionary<Guid, User> dictionary)
+    private static ReadOnlyCollection<User> GetUsersByIds(ReadOnlySet<Guid> userIds, ReadOnlyDictionary<Guid, User> dictionary)
     {
         var results = new List<User>();
         foreach (var userId in userIds)
@@ -29,6 +31,20 @@ public static class Service
             }
         }
         
-        return results;
+        return results.AsReadOnly();
+    }
+    
+    private static ReadOnlyCollection<User> GetUsersByIds(ReadOnlySet<Guid> userIds, FrozenDictionary<Guid, User> dictionary)
+    {
+        var results = new List<User>();
+        foreach (var userId in userIds)
+        {
+            if (dictionary.TryGetValue(userId, out var user))
+            {
+                results.Add(user);
+            }
+        }
+        
+        return results.AsReadOnly();
     }
 }

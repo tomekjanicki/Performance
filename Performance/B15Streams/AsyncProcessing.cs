@@ -1,10 +1,12 @@
-﻿namespace Performance.B15Streams;
+﻿using System.Collections.ObjectModel;
+
+namespace Performance.B15Streams;
 
 public static class AsyncProcessing
 {
-    public static async Task WriteRows(string fileName, IReadOnlyCollection<Result> results, CancellationToken cancellationToken)
+    public static async Task WriteRows(string fileName, ReadOnlyCollection<Result> results, CancellationToken cancellationToken)
     {
-        var buffer = new byte[4];
+        var buffer = new Memory<byte>(new byte[4]);
         await using var stream = new FileStream(fileName, FileMode.CreateNew, FileAccess.Write, FileShare.None,
             bufferSize: 4096, useAsync: true);
         foreach (var result in results)
@@ -13,7 +15,7 @@ public static class AsyncProcessing
         }
     }
     
-    public static async Task<IReadOnlyCollection<Result>> GetRows(string fileName, CancellationToken cancellationToken)
+    public static async Task<ReadOnlyCollection<Result>> GetRows(string fileName, CancellationToken cancellationToken)
     {
         const int rowSize = 3;
         var data = (await File.ReadAllBytesAsync(fileName, cancellationToken)).AsSpan();
@@ -35,6 +37,6 @@ public static class AsyncProcessing
             });
         }
 
-        return result;
+        return result.AsReadOnly();
     }
 }

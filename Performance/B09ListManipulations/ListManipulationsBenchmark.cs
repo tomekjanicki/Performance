@@ -1,30 +1,31 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Collections.ObjectModel;
 
 namespace Performance.B09ListManipulations;
 
 public class ListManipulationsBenchmark
 {
     [Benchmark]
-    public IReadOnlyCollection<int> InsertItemsAtTheBeginningOneByOne() => 
+    public ReadOnlyCollection<int> InsertItemsAtTheBeginningOneByOne() => 
         ListManipulations.InsertItemsAtTheBeginningOneByOne(300);
     
     [Benchmark]
-    public IReadOnlyCollection<int> InsertItemsAtTheBeginningByRange() => 
+    public ReadOnlyCollection<int> InsertItemsAtTheBeginningByRange() => 
         ListManipulations.InsertItemsAtTheBeginningByRange(300);
     
     [Benchmark]
-    public IReadOnlyCollection<int> InsertItemsAtTheBeginningWithLinq() => 
+    public ReadOnlyCollection<int> InsertItemsAtTheBeginningWithLinq() => 
         ListManipulations.InsertItemsAtTheBeginningWithLinq(300);
     
     [Benchmark]
-    public IReadOnlyCollection<int> RemoveItemsAtTheBeginningOneByOne() => 
+    public ReadOnlyCollection<int> RemoveItemsAtTheBeginningOneByOne() => 
         ListManipulations.RemoveItemsAtTheBeginningOneByOne(300);
     
     [Benchmark]
-    public IReadOnlyCollection<int> RemoveItemsAtTheBeginningByRange() => 
+    public ReadOnlyCollection<int> RemoveItemsAtTheBeginningByRange() => 
         ListManipulations.RemoveItemsAtTheBeginningByRange(300);
     
     [Benchmark]
-    public IReadOnlyCollection<int> RemoveItemsAtTheBeginningByLinq() => 
+    public ReadOnlyCollection<int> RemoveItemsAtTheBeginningByLinq() => 
         ListManipulations.RemoveItemsAtTheBeginningByLinq(300);
 }

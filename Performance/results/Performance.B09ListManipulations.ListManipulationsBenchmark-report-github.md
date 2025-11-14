@@ -1,19 +1,18 @@
 ```
 
-BenchmarkDotNet v0.15.6, Windows 11 (10.0.26100.6899/24H2/2024Update/HudsonValley)
+BenchmarkDotNet v0.15.6, Windows 11 (10.0.26200.6899)
 AMD Ryzen 5 Pro 7535U with Radeon Graphics 2.90GHz, 1 CPU, 12 logical and 6 physical cores
-.NET SDK 10.0.100-rc.2.25502.107
-  [Host]    : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
-  .NET 10.0 : .NET 10.0.0 (10.0.0-rc.2.25502.107, 10.0.25.50307), X64 RyuJIT x86-64-v3
+.NET SDK 10.0.100
+  [Host]     : .NET 10.0.0 (10.0.0, 10.0.25.52411), X64 RyuJIT x86-64-v3
+  DefaultJob : .NET 10.0.0 (10.0.0, 10.0.25.52411), X64 RyuJIT x86-64-v3
 
-Job=.NET 10.0  Runtime=.NET 10.0  Toolchain=net10.0  
 
 ```
-| Method                            | Mean       | Error    | StdDev   | Median     | Gen0      | Gen1     | Gen2     | Allocated  |
-|---------------------------------- |-----------:|---------:|---------:|-----------:|----------:|---------:|---------:|-----------:|
-| InsertItemsAtTheBeginningOneByOne | 2,283.1 μs | 31.16 μs | 45.67 μs | 2,276.0 μs |  332.0313 | 332.0313 | 332.0313 | 1172.06 KB |
-| InsertItemsAtTheBeginningByRange  |   244.7 μs |  7.80 μs | 22.89 μs |   235.4 μs |  333.2520 | 333.2520 | 333.2520 |  1172.1 KB |
-| InsertItemsAtTheBeginningWithLinq | 1,711.5 μs | 20.26 μs | 20.80 μs | 1,707.5 μs | 1031.2500 | 996.0938 | 988.2813 | 5741.88 KB |
-| RemoveItemsAtTheBeginningOneByOne | 1,625.5 μs | 16.20 μs | 12.65 μs | 1,626.5 μs |  123.0469 | 123.0469 | 123.0469 |  390.72 KB |
-| RemoveItemsAtTheBeginningByRange  |   117.1 μs |  2.33 μs |  6.34 μs |   115.1 μs |  124.8779 | 124.8779 | 124.8779 |  390.72 KB |
-| RemoveItemsAtTheBeginningByLinq   |   115.7 μs |  3.83 μs | 10.61 μs |   110.1 μs |  124.8779 | 124.8779 | 124.8779 |  389.62 KB |
+| Method                            | Mean       | Error    | StdDev    | Gen0      | Gen1     | Gen2     | Allocated  |
+|---------------------------------- |-----------:|---------:|----------:|----------:|---------:|---------:|-----------:|
+| InsertItemsAtTheBeginningOneByOne | 2,728.5 μs | 99.92 μs | 294.62 μs |  328.1250 | 328.1250 | 328.1250 | 1172.08 KB |
+| InsertItemsAtTheBeginningByRange  |   267.2 μs |  8.25 μs |  23.67 μs |  333.2520 | 333.2520 | 333.2520 | 1172.13 KB |
+| InsertItemsAtTheBeginningWithLinq | 2,296.0 μs | 53.77 μs | 153.41 μs | 1019.5313 | 992.1875 | 992.1875 | 5498.88 KB |
+| RemoveItemsAtTheBeginningOneByOne | 2,169.3 μs | 62.27 μs | 183.60 μs |  121.0938 | 121.0938 | 121.0938 |  390.74 KB |
+| RemoveItemsAtTheBeginningByRange  |   125.9 μs |  4.16 μs |  11.80 μs |  124.8779 | 124.8779 | 124.8779 |  390.74 KB |
+| RemoveItemsAtTheBeginningByLinq   |   318.1 μs |  8.22 μs |  23.97 μs |  249.5117 | 249.5117 | 249.5117 |  779.11 KB |

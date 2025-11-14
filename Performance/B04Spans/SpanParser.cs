@@ -1,10 +1,11 @@
-﻿using System.Globalization;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace Performance.B04Spans;
 
 public static class SpanParser
 {
-    public static IReadOnlyCollection<Result> Parse(string data)
+    public static ReadOnlyCollection<Result> Parse(string data)
     {
         var span = data.AsSpan();
         var lineRanges = span.Split(Environment.NewLine);
@@ -19,6 +20,6 @@ public static class SpanParser
             });
         }
 
-        return result;
+        return result.AsReadOnly();
     }
 }

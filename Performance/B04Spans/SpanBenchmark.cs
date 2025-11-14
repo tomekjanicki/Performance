@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Collections.ObjectModel;
 
 namespace Performance.B04Spans;
 
@@ -7,10 +8,10 @@ public class SpanBenchmark
     private static readonly string Data = DataProducer.GetData(100);
 
     [Benchmark]
-    public IReadOnlyCollection<Result> GetResultClassic() => 
+    public ReadOnlyCollection<Result> GetResultClassic() => 
         ClassicParser.Parse(Data);
     
     [Benchmark]
-    public IReadOnlyCollection<Result> GetResultSpan() => 
+    public ReadOnlyCollection<Result> GetResultSpan() => 
         SpanParser.Parse(Data);
 }

@@ -1,10 +1,12 @@
-﻿namespace Performance.B09ListManipulations;
+﻿using System.Collections.ObjectModel;
+
+namespace Performance.B09ListManipulations;
 
 public static class ListManipulations
 {
-    private static readonly List<int> Data = [.. Enumerable.Range(0, 100000).Select(i => i)];
+    private static readonly ReadOnlyCollection<int> Data = [.. Enumerable.Range(0, 100000).Select(i => i)];
 
-    public static IReadOnlyCollection<int> InsertItemsAtTheBeginningOneByOne(int count)
+    public static ReadOnlyCollection<int> InsertItemsAtTheBeginningOneByOne(int count)
     {
         var data = Data.ToList();
         for (var counter = 0; counter < count; counter++)
@@ -12,21 +14,21 @@ public static class ListManipulations
             data.Insert(0, counter);
         }
 
-        return data;
+        return data.AsReadOnly();
     }
     
-    public static IReadOnlyCollection<int> InsertItemsAtTheBeginningByRange(int count)
+    public static ReadOnlyCollection<int> InsertItemsAtTheBeginningByRange(int count)
     {
         var data = Data.ToList();
         data.InsertRange(0, Enumerable.Range(0, count));
         
-        return data;
+        return data.AsReadOnly();
     }
     
-    public static IReadOnlyCollection<int> InsertItemsAtTheBeginningWithLinq(int count) =>
+    public static ReadOnlyCollection<int> InsertItemsAtTheBeginningWithLinq(int count) =>
         [.. Enumerable.Range(0, count).Union(Data)];
     
-    public static IReadOnlyCollection<int> RemoveItemsAtTheBeginningOneByOne(int count)
+    public static ReadOnlyCollection<int> RemoveItemsAtTheBeginningOneByOne(int count)
     {
         var data = Data.ToList();
         for (var counter = 0; counter < count; counter++)
@@ -34,17 +36,17 @@ public static class ListManipulations
             data.RemoveAt(0);
         }
 
-        return data;
+        return data.AsReadOnly();
     }
 
-    public static IReadOnlyCollection<int> RemoveItemsAtTheBeginningByRange(int count)
+    public static ReadOnlyCollection<int> RemoveItemsAtTheBeginningByRange(int count)
     {
         var data = Data.ToList();
         data.RemoveRange(0, count);
  
-        return data;
+        return data.AsReadOnly();
     }
 
-    public static IReadOnlyCollection<int> RemoveItemsAtTheBeginningByLinq(int count) =>
+    public static ReadOnlyCollection<int> RemoveItemsAtTheBeginningByLinq(int count) =>
         [.. Data.Skip(count)];
 }

@@ -14,7 +14,7 @@ public static class Service
     {
         var values = GetValues(count).ToArray();
         var counter = 0;
-        var results = new List<int>();
+        var results = new List<int>(count / chunkSize + 1);
         while (true)
         {
             var chunk = values.Skip(counter * chunkSize).Take(chunkSize).ToArray();

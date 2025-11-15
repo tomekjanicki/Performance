@@ -10,5 +10,5 @@ AMD Ryzen 5 Pro 7535U with Radeon Graphics 2.90GHz, 1 CPU, 12 logical and 6 phys
 ```
 | Method       | Mean     | Error    | StdDev   | Median   | Gen0    | Gen1   | Allocated |
 |------------- |---------:|---------:|---------:|---------:|--------:|-------:|----------:|
-| WithChunks   | 66.55 μs | 1.271 μs | 3.372 μs | 65.43 μs |  5.6152 |      - |   46.3 KB |
-| WithSkipTake | 31.89 μs | 1.311 μs | 3.845 μs | 31.74 μs | 11.2915 | 1.5869 |  92.42 KB |
+| WithChunks   | 66.50 μs | 1.325 μs | 3.174 μs | 65.08 μs |  5.6152 |      - |   46.3 KB |
+| WithSkipTake | 30.37 μs | 1.003 μs | 2.957 μs | 30.07 μs | 11.1694 | 1.5869 |  91.63 KB |

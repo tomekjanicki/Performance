@@ -11,8 +11,7 @@
 
     <ItemGroup>
       <PackageReference Include="BenchmarkDotNet" Version="0.15.6" />
-      <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.10" />
-      <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
       <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
       <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
       <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
